@@ -10,19 +10,21 @@ export default function ({ className, children, event }: Props) {
   const pos = (View.scrollHeight * scrolltop)
 
 
-  //if loaded, check last postition vs current position and set visible if scrolling up
+  // if loaded, check last postition vs current position to check wether you are scrolling up or down.
   useEffect(() => {
     if (!loaded) return
-    //  console.log("scroll trig", pos, scroll, visible)
 
+    // event is the form element togglebutton, a boolean default set to true. On the scrolldown event, it will be set to the opposite of it's value (!event).
+    // This means that if you flip the event toggle button, it will set visible to true on scroll down and to false on scroll up.
+
+    // Scroll down event:
     if (scroll < pos) {
+  
       setVisible(!event)
-      //     console.log("scrolldown")
     }
-
+    // Scroll up event:
     if (scroll > pos) {
       setVisible(event)
-      //    console.log("scrollup")
     }
     setScroll(pos)
   }, [pos])
