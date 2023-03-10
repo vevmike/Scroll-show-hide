@@ -10,7 +10,7 @@ export default function ({ className, children, event }: Props) {
   const pos = (View.scrollHeight * scrolltop)
 
 
-  // if loaded, check last postition vs current position to check wether you are scrolling up or down.
+  // When pos changes, check if loaded, then check last postition vs current position to check wether you are scrolling up or down.
   useEffect(() => {
     if (!loaded) return
 
@@ -29,13 +29,12 @@ export default function ({ className, children, event }: Props) {
     setScroll(pos)
   }, [pos])
 
-  //Set loaded to true
+  //Set loaded to true when the page is loaded (this only runs once).
   useEffect(() => {
-
     setLoaded(true)
   }, [])
 
-
+  // The style parameter show is set by the visible state.
   return (
     <div className={className} ref={ref}>
       <Transition show={visible}  >
